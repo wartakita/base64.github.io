@@ -13,10 +13,13 @@
             justify-content: center;
             align-items: center;
             height: 100vh;
+            overflow: hidden;
         }
 
         .container {
-            background: #ffffff;
+            background: linear-gradient(45deg, #EE7752, #E73C7E, #23A6D5, #23D5AB);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             width: 90%;
@@ -26,8 +29,20 @@
             animation: fadeIn 0.5s ease-in-out;
         }
 
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
         h1 {
-            color: #333;
+            color: #fff;
             margin-bottom: 20px;
             font-size: 24px;
         }
@@ -113,21 +128,6 @@
                 alert('Invalid Base64 string');
                 document.getElementById('outputText').value = '';
             }
-        }
-
-        // Function to handle Ctrl+C for copying output
-        document.addEventListener('keydown', function(event) {
-            if (event.ctrlKey && (event.key === 'c' || event.key === 'C')) {
-                copyToClipboard();
-            }
-        });
-
-        // Function to copy output text to clipboard
-        function copyToClipboard() {
-            const outputText = document.getElementById('outputText');
-            outputText.select();
-            document.execCommand('copy');
-            alert('Output copied to clipboard');
         }
     </script>
 </body>
